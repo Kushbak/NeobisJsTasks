@@ -1,3 +1,4 @@
+// Задача №1
 // 1
 for (var i = 0; i < 10; i++) {
     setTimeout(function() {
@@ -7,15 +8,15 @@ for (var i = 0; i < 10; i++) {
 
 
 
-
-// 2		find the current day of week and time 
+// Задача №2
+// 1		find the current day of week and time 
 // let date = new Date(); // текущая дата 
 // let today = document.getElementById('today'); // нахождение элемента с id 'today'
 // today.innerHTML = date; 	// засовываем в today нашу дату
 
 
 
-// 3		reverse the num
+// 2		reverse the num
 // let num = document.getElementById('forReverse').innerHTML;
 // let reversedNum = document.getElementById('reversed'); 
 
@@ -31,10 +32,11 @@ for (var i = 0; i < 10; i++) {
 
 
 
-// 4		Find the factorial of num
+// 3		Find the factorial of num
 let factorialBtn = document.getElementById('factorialBtn'); 
 factorialBtn.addEventListener('click', function(){
 	let num = prompt('Введите число для выведения его факториала');
+	let numb = num;
 	let answer = 1;
 	let expression = '';
 	let span = document.getElementById('factorial');
@@ -45,11 +47,11 @@ factorialBtn.addEventListener('click', function(){
 			expression += ' * ';
 		}
 	}
-	span.innerHTML = `${expression} = ${answer}`;
+	span.innerHTML = `!${numb} = ${expression} = ${answer}`;
 });
 
 
-// 5		Find the bigger num 
+// 4		Find the bigger num 
 let biggerNumBtn = document.getElementById('biggerNumBtn'); 
 biggerNumBtn.addEventListener('click', function(){ 
 	let num1 = prompt('Напишите 1-е число');
@@ -68,5 +70,32 @@ biggerNumBtn.addEventListener('click', function(){
 });
 
 
-// 6		
 
+// 5		add to string every elem of arr and '+' or ','
+let changeArrBtn = document.getElementById('changeArrBtn'); 
+let changedArr = document.getElementById('changedArr'); 
+changeArrBtn.addEventListener('click', function(){ 
+	let myColor = ["Red", "Green", "White", "Black"];
+	let answer = ''
+	for (let i = 0; i < myColor.length; i++) {
+		answer += myColor[i]
+		if (i != myColor.length - 1) {
+			answer += '+'
+		} 
+	}
+	changedArr.innerHTML = answer;
+	console.log(answer);
+})
+
+
+// 7 is first letter upperace or not
+
+let uppercaseBtn = document.getElementById('uppercaseBtn'); 
+let isUppercase = document.getElementById('isUppercase'); 
+uppercaseBtn.addEventListener('click', function(){  
+	let str = prompt() 
+	isUppercase.innerHTML = (str[0] === str[0].toUpperCase()) ? 'is uppercase' : 'isn\'t uppercase';   
+})
+
+
+// 8
