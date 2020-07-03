@@ -1,7 +1,7 @@
 'use strict'
 // Задача №1
 // 1
-for (var i = 0; i < 10; i++) {
+for (let i = 0; i < 10; i++) {
     setTimeout(function() {
         console.log(i);
     })	// Поставил закрывающую круглую скобочку тут
