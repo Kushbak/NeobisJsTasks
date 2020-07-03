@@ -1,3 +1,4 @@
+'use strict'
 // Задача №1
 // 1
 for (var i = 0; i < 10; i++) {
@@ -45,19 +46,23 @@ toReverseBtn.addEventListener('click', function(){
 let factorialBtn = document.getElementById('factorialBtn'); 
 
 factorialBtn.addEventListener('click', function(){
-	let num = prompt('Введите число для выведения его факториала');
+	let num = +prompt('Введите число для выведения его факториала');
 	let numb = num;
 	let answer = 1;
 	let expression = '';
 	let span = document.getElementById('factorial');
-	for (num; num > 0; num--) {
-		answer *= num;
-		expression += num; 
-		if (num !== 1) {
-			expression += ' * ';
+	if(num !== num){
+		alert('Задайте число!');
+	}else{
+		for (num; num > 0; num--) {
+			answer *= num;
+			expression += num; 
+			if (num !== 1) {
+				expression += ' * ';
+			}
 		}
+		span.innerHTML = `!${numb} = ${expression} = ${answer}`;
 	}
-	span.innerHTML = `!${numb} = ${expression} = ${answer}`;
 });
 
 
@@ -65,20 +70,19 @@ factorialBtn.addEventListener('click', function(){
 let biggerNumBtn = document.getElementById('biggerNumBtn'); 
 
 biggerNumBtn.addEventListener('click', function(){ 
-	let num1 = prompt('Напишите 1-е число');
-	let num2 = prompt('Напишите 2-е число');   
+	let num1 = +prompt('Напишите 1-е число');
+	let num2 = +prompt('Напишите 2-е число');   
 	let span = document.getElementById('biggerNum');
 
-	if (+num1 == NaN && +num2 == NaN) {
+	if (num1 !== num1 || num2 !== num2) {
 		alert('Задайте число!');
 	} else{ 
-		if(+num1 >= +num2){
+		if(num1 >= num2){
 			span.innerHTML = num1;
 		} else {
 			span.innerHTML = num2;
 		}
-	}   
-	console.log(+num1 + ' ' + typeof +num1 + ' ' + typeof NaN);
+	}    
 });
 
 
@@ -107,7 +111,7 @@ changeArrBtn.addEventListener('click', function(){
 })
 
 
-// 6	get month from particular date
+// 6		get month from particular date
 // You'll change value of calling function here)	I didn't made eventListener for this
 
 let month_name = (date) => {
@@ -119,22 +123,59 @@ console.log(month_name(new Date("8/13/2014")));		// change the data here to see 
 
 
 
-// 7 is first letter upperace or not
+// 7 		is first letter upperace or not
 let uppercaseBtn = document.getElementById('uppercaseBtn'); 
 
 uppercaseBtn.addEventListener('click', function(){  
 	let isUppercase = document.getElementById('isUppercase'); 
 	let str = prompt() 
-	isUppercase.innerHTML = (str[0] === str[0].toUpperCase()) ? 'is uppercase' : 'isn\'t uppercase';   
+	isUppercase.innerHTML = (str[0] === str[0].toUpperCase()) ? 'This is uppercase' : 'This isn\'t uppercase';   
+})
+
+// 8		draw smile with canvas
+
+let drawBtn = document.getElementById('drawBtn'); 
+
+drawBtn.addEventListener('click', function(){  
+	let smile = document.getElementById('smile');
+	let ctx = smile.getContext('2d');
+
+	// head
+	ctx.fillStyle = '#ffec42'
+	ctx.beginPath();
+	ctx.arc(50, 50, 50, 0, Math.PI*2);
+	ctx.fill();
+
+
+	// eyes
+	ctx.fillStyle = '#fff'
+	ctx.beginPath();
+	ctx.arc(35, 35, 8, 0, Math.PI*2);
+	ctx.fill();
+
+	ctx.fillStyle = '#fff'
+	ctx.beginPath();
+	ctx.arc(70, 35, 8, 0, Math.PI*2);
+	ctx.fill();
+
+	// mouse
+	ctx.fillStyle = '#fff'
+	ctx.beginPath();
+	ctx.arc(50, 60, 30, 6.3, Math.PI); // Mouth (clockwise)
+	ctx.fill();
 })
 
 
 
 
+
+
+// Почему то в документе не было задачи №3, и порядок был какой то странный, поэтому пронумеровал каждую задачу как есть
+
 // Задача №4
 
 
-// 1
+// 1		Show twister in console in special order
 let showTwisterBtn = document.getElementById('showTwisterBtn'); 
 
 showTwisterBtn.addEventListener('click', function(){  
@@ -145,7 +186,7 @@ showTwisterBtn.addEventListener('click', function(){
 })
 
 
-// 2
+// 2		color of half of elems should be red and half - green
 let paintElementsBtn = document.getElementById('paintElementsBtn'); 
 
 paintElementsBtn.addEventListener('click', function(){  
@@ -160,7 +201,7 @@ paintElementsBtn.addEventListener('click', function(){
 })
 
 
-// 3
+// 3		add tasks from arr into ul list
 let addTasksBtn = document.getElementById('addTasksBtn'); 
 
 addTasksBtn.addEventListener('click', function(){  
@@ -175,41 +216,41 @@ addTasksBtn.addEventListener('click', function(){
 })
 
 
-// 4  
+// 4		add hr tag after each paragraph
 let addHrBtn = document.getElementById('addHrBtn'); 
 
 addHrBtn.addEventListener('click', function(){   
-	let p = document.getElementsByTagName('p');
-	let hr = document.createElement('hr')
+	let article = document.getElementsByTagName('article');
+	let p = article[0].getElementsByTagName('p');
 	for (let i = 0; i < p.length; i++) {
-		p[i].appendChild(hr);
+		p[i].insertAdjacentHTML('afterEnd', '<hr>')
 	}
 })
 
 
-// 4  
+// 5 		change one elem to fish and remove cola
 let changeAndRemoveBtn = document.getElementById('changeAndRemoveBtn'); 
 
 changeAndRemoveBtn.addEventListener('click', function(){   
 	let cartItems = document.getElementById('cart-items'); 		//div#cart-items 
-	let lastItem = cartItems.lastChild
-	// creating new div and text for it to add to cartItems
-	let newItem = document.createElement('div');		newItem.className = 'item';
-	let spanForItem = document.createElement('span');	spanForItem.className = 'qty';
-	textForItem = document.createTextNode('Canned Fish');
-	textForSpan = document.createTextNode(' x 4');
-	newItem.appendChild(textForItem);
-	spanForItem.appendChild(textForSpan);
+	let items = cartItems.querySelectorAll('.item');
+	let spanForItem = document.createElement('span');
+	let newItem = document.createElement('div');	
+	let lastItem = cartItems.lastChild;
+
+	newItem.className = 'item';	newItem.innerHTML = 'Canned Fish';
+	spanForItem.className = 'qty';	spanForItem.innerHTML = ' x 4';
 	newItem.appendChild(spanForItem);
-	cartItems.replaceChild(newItem, lastItem);
+	cartItems.replaceChild(newItem, items[items.length - 1]);
+	items[1].remove()
 })
 
 
-// 5
+// 6		add tasks that user want to add
 let addTasksBtn2 = document.getElementById('addTasksBtn2'); 
-let todoForUser = document.getElementById('todoForUser'); 
 
 addTasksBtn2.addEventListener('click', function(){
+	let todoForUser = document.getElementById('todoForUser'); 
 	let anotherTask = true
 	while (anotherTask){
 		let task = prompt('Добавьте задачу') 
@@ -221,7 +262,10 @@ addTasksBtn2.addEventListener('click', function(){
 		todoForUser.appendChild(listItem);
 		listItem.innerHTML = task;
 
-	} 
+	}
 }) 
 
  
+
+
+
